@@ -17,6 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     empty($_POST['website']) ? $websiteErr = '' : $website = test_input($_POST['website']);
 
+    $website = test_input($_POST["website"]);
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+        $websiteErr = "Invalid URL";
+        $website = '';
+    }
+
     empty($_POST['comment']) ? $commentErr = '' : $comment = test_input($_POST['comment']);
 
     empty($_POST['gender']) ? $genderErr = 'Gender is required!' : $gender = test_input($_POST['gender']);
@@ -97,23 +103,27 @@ div {
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
         <div>
-            Name: <input type="text" name="name" id=""> <span class='error' >* <?php echo $nameErr ?> </span>
+            Name: <input type="text" name="name" value="<?php echo $name ?>"> <span class='error' >* <?php echo $nameErr ?> </span>
         </div>
         <div>
-            Email: <input type="text" name="email" id=""> <span class='error' >* <?php echo $emailErr ?> </span>
+            Email: <input type="text" name="email" value="<?php echo $email ?>"> <span class='error' >* <?php echo $emailErr ?> </span>
         </div>
         <div>
-            Website: <input type="text" name="website" id=""> <span class='error' > <?php echo $websiteErr ?> </span>
+            Website: <input type="text" name="website" value="<?php echo $website ?>"> <span class='error' > <?php echo $websiteErr ?> </span>
         </div>
         <div>
-            Comment: <textarea placeholder='Comment here...' name="comment" id="" cols="30" rows="10"></textarea>
+            Comment: <textarea placeholder='Comment here...' name="comment" id="" cols="30" rows="10"><?php echo $comment ?></textarea>
         </div>
         <main>
-            Gender: <input type="radio" name="gender" value='female'> Female
-            <input type="radio" name="gender" value='male'>Male
-            <input type="radio" name="gender" value='other'>Other
-
-             <span class='error' >* <?php echo $genderErr ?> </span>
+            Gender: <input type="radio" name="gender"
+            <?php if (isset($gender) && $gender=="female") echo "checked";?>
+            value="female">Female
+            <input type="radio" name="gender"
+            <?php if (isset($gender) && $gender=="male") echo "checked";?>
+            value="male">Male
+            <input type="radio" name="gender"
+            <?php if (isset($gender) && $gender=="other") echo "checked";?>
+            value="other">Other
         </main>
         <input class='submit' type="submit" value="Submit">
     </form>

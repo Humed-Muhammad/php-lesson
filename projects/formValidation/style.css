@@ -20,7 +20,7 @@ form {
   align-items: center;
   background-color: teal;
   color: rgb(92, 92, 92);
-  border-radius: 5px;
+border-radius: 5px;
 }
 input,
 textarea {

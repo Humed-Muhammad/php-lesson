@@ -37,8 +37,9 @@
                                 <?php endforeach ?>
                             </ul>
                         </div>
-                        <div class="card-action right-align">
-                            <a class="brand-text" href="#">more info</a>
+                        <div class="card-action" style="display:flex; justify-content:space-around">
+                        <a href="edit.php?id=<?php echo $pizza['id']; ?>" class="red-text left-align">Edit</a>
+                            <a class="brand-text" href="details.php?id=<?php echo($pizza['id']); ?>">more info</a>
                         </div>
                     </div>
                 </div>

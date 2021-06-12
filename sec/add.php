@@ -1,5 +1,8 @@
 <?php 
 
+    // connect to db
+    include('./config/db_connect.php');
+
     $errors = array("email"=>'', "title"=>'', "ingredients"=>'');
     if(isset($_POST['submit'])){
 
@@ -35,7 +38,18 @@
         }
 
         if(!array_filter($errors)){
-            header("Location: index.php");
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $title = mysqli_real_escape_string($conn, $_POST['title']);
+            $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+
+            // sql
+            $sql = "INSERT INTO pizzas(title,email,ingredients) VALUE('$title','$email','$ingredients')";
+            if(mysqli_query($conn,$sql)){
+                header("Location: index.php");
+            }else{
+                $err = "500 Server Error: ". mysqli_error($conn);
+            }
+            
         }
 
         if($_POST['clear']){
@@ -65,6 +79,7 @@
             <input type="submit" name="submit" value="submit" class='btn brand z-depth-0' >
             <input type="submit" name="clear" value="Clear Form" class='btn brand z-depth-0' >
         </div>
+        <h3 class="red-text" ><?php echo $err ?></h3>
     </form>
     <?php include('./template/footer.php') ?>
 </html>

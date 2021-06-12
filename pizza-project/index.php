@@ -41,7 +41,7 @@
                             </ul>
                         </div>
                         <div style="display:flex; justify-content:space-around; align-items:center;" class="card-action right-align">
-                            <a><?php include('delete.php') ?></a>
+                            <!-- <a><?php include('delete.php') ?></a> -->
                             <a href="details.php?id=<?php echo $pizza['id']; ?>" class="brand-text"> more info </a>
                         </div>
                     </div>

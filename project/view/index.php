@@ -19,7 +19,7 @@
     </head>
     <?php include './header.php'?>
     <h4 class="center grey-text">Pizzas</h4>
-    <h5>There are <?php echo $pizzas->le ?></h5>
+    <h5 class="center blue-text">There are <?php echo count($pizzas)?> Pizzas</h5>
     <div class="container">
         <div class="row">
             <?php foreach ($pizzas as $pizza): ?>

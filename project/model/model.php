@@ -3,14 +3,9 @@
     class Model{
         private $result;
         private $conn;
-        private $id;
 
         function __construct(){
            $this->conn = mysqli_connect("localhost","humed","hum.","humed_pizza");
-        }
-
-        function getID($id){
-            return $this->id = $id;
         }
 
         function Excute ($query) {
@@ -33,12 +28,7 @@
             }
         }
 
+
     }
-    
-    
-    
-
-
-
 ?>
 

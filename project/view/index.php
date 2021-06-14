@@ -3,8 +3,7 @@
 
     include('../control/control.php');
     $pizzas = getPizzas();
-
-    print_r($pizzas);
+    
 
 ?>
 
@@ -15,8 +14,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <?php include '../template/header.php'?>
+    <head>
+        <title>Home</title>
+    </head>
+    <?php include './header.php'?>
     <h4 class="center grey-text">Pizzas</h4>
+    <h5>There are <?php echo $pizzas->le ?></h5>
     <div class="container">
         <div class="row">
             <?php foreach ($pizzas as $pizza): ?>
@@ -40,5 +43,5 @@
             <?php endforeach?>
         </div>
     </div>
-    <?php include '../template/footer.php'?>
+    <?php include './footer.php'?>
 </html>

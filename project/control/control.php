@@ -37,15 +37,24 @@
         return $errors;
     }
 
-    function getPizzas (){
-        $sql_one = "SELECT title, ingredients, id FROM pizzas";
-    
+    function getPizzas ($term){
         $pizzas = new Model();
-        if($pizzas-> Excute($sql_one)){
+        if($term){
+            $sql_term = "SELECT title, ingredients, id FROM pizzas WHERE title LIKE '$term%' limit 100";
+            if($pizzas-> Excute($sql_term)){
 
-            return $pizzas->fetchAllPizzas();
+                return $pizzas->fetchAllPizzas();
 
+            }
+        }else{
+            $sql_one = "SELECT title, ingredients, id FROM pizzas";
+            if($pizzas-> Excute($sql_one)){
+
+                return $pizzas->fetchAllPizzas();
+
+            }
         }
+        
 
     }
 

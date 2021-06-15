@@ -2,11 +2,10 @@
 <?php 
 
     include('../control/control.php');
-    $pizzas = getPizzas();
-    
+    $pizzas = getPizzas($_POST['term']);
+
 
 ?>
-
 
 
 
@@ -19,7 +18,12 @@
     </head>
     <?php include './header.php'?>
     <h4 class="center grey-text">Pizzas</h4>
-    <h5 class="center blue-text">There are <?php echo count($pizzas)?> Pizzas</h5>
+    <h6 class="center blue-text">There are <?php echo count($pizzas)?> Pizzas
+    </h6>
+        <form method="POST" action="index.php" class="container">
+            <input placeholder="Search" style="width: 200px;" class="center m6" type="text" name="term">
+            <input class="btn brand" type="submit" name="find" value="Search">
+        </form>
     <div class="container">
         <div class="row">
             <?php foreach ($pizzas as $pizza): ?>
